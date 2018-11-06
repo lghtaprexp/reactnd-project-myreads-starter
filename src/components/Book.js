@@ -1,12 +1,16 @@
 import React from 'react'
-import * as BooksAPI from '../BooksAPI'
+// import * as BooksAPI from '../BooksAPI'
+// import Home from './Home'
+// import Shelf from './Shelf'
 
 class Book extends React.Component {
-  render() {
-    // Change hard code URL image link
-    // let imgUrl = {this.props.book.imageLinks};
-    // console.log(imgUrl);
+  // Check props that were given
+  componentDidMount() {
+  	console.log(this);
+  }
 
+  
+  render() {
   	return (
   	  <li>
         <div className="book">
@@ -22,7 +26,7 @@ class Book extends React.Component {
               </select>
             </div>
           </div>
-          <div className="book-title">To Kill a Mockingbird</div>
+          <div className="book-title"></div>
           <div className="book-authors">Harper Lee</div>
         </div>
       </li>
