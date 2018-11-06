@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Home from './Home'
 
 class Search extends React.Component {
+  // Check props that were given
+  componentDidMount() {
+  	console.log(this);
+  }
+
   render() {
   	return (
   	  <div className="search-books">
