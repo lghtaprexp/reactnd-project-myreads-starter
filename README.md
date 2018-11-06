@@ -90,3 +90,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Resources
+https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf

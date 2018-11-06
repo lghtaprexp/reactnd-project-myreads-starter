@@ -1,7 +1,12 @@
 import React from 'react'
+import * as BooksAPI from '../BooksAPI'
 
 class Book extends React.Component {
   render() {
+    // Change hard code URL image link
+    // let imgUrl = {this.props.book.imageLinks};
+    // console.log(imgUrl);
+
   	return (
   	  <li>
         <div className="book">
