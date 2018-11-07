@@ -28,9 +28,9 @@ class Home extends React.Component {
   moveBook = (book, shelf) => {
   	// Run update on books and shelves to compare changes
   	BooksAPI.update(book, shelf)
-  	.then(() => {
+  	.then((newBooks) => {
   	// Create new list of book from running update
-  	let newBooks = this.state.myBooks;
+  	newBooks = this.state.myBooks;
   	// Check for books on the new list against the one on shelves
   	let selectBook = newBooks.filter(currentBook => currentBook.id === book.id);
   	// console.log(selectBook);

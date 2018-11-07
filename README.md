@@ -93,3 +93,4 @@ For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Resources
 https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
+https://reactjs.org/docs/forms.html

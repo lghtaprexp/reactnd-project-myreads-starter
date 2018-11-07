@@ -5,9 +5,9 @@ import * as BooksAPI from '../BooksAPI'
 
 class Book extends React.Component {
   // Check props that were given
-  componentDidMount() {
-  	console.log(this);
-  }
+  // componentDidMount() {
+  // 	console.log(this);
+  // }
 
   // https://reactjs.org/docs/forms.html
   // Allow user to select the different options to
@@ -15,9 +15,7 @@ class Book extends React.Component {
   handleChange = (event) => {
   	this.props.moveBook(this.props.book, event.target.value)
   	// console.log(event.target.value);
-
   }
-
   
   render() {
   	/* Remove hard coded title, author, and image thumbnail
