@@ -22,13 +22,13 @@ class Book extends React.Component {
   	*/
   	let title = this.props.book.title;
   	let authors = this.props.book.authors;
-  	let imgUrl = this.props.book.imageLinks.thumbnail;
+  	let imgUrl = this.props.book.imageLinks;
 
   	return (
   	  <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${!imgUrl ? "" : imgUrl})` }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${!imgUrl ? "" : imgUrl.thumbnail})` }}></div>
             <div className="book-shelf-changer">
               <select value={this.props.book.shelf} onChange={this.handleChange}>
                 <option value="move" disabled>Move to...</option>
