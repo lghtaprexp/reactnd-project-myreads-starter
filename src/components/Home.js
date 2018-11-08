@@ -1,7 +1,7 @@
 import React from 'react'
 import Shelf from './Shelf'
 import * as BooksAPI from '../BooksAPI'
-import App from '../App'
+// import App from '../App'
 
 class Home extends React.Component {
   constructor(props) {

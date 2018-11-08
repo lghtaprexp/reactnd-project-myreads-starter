@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Home from './Home'
+// import Home from './Home'
 import * as BooksAPI from '../BooksAPI'
 import Book from './Book'
 
@@ -64,8 +64,8 @@ displayResults = () => {
 // Allow user to select the different options to
 // move books between shelves
 handleChange = (event) => {
-  this.queueResult(event.target.value)
-  // console.log(event.target.value);
+  this.queueResult(event.target.value);
+  console.log(event.target.value);
 }
 
 // Moving books between shelves
@@ -74,12 +74,12 @@ handleChange = (event) => {
   BooksAPI.update(book, shelf)
   .then((newBooks) => {
   // Create new list of book from running update
-  newBooks.shelf = this.state.myBooks.shelf;
+  newBooks = this.state.myBooks;
   // Check for books on the new list against the one on shelves
   let selectBook = newBooks.filter(currentBook => currentBook.id === book.id);
   // console.log(selectBook);
   if(selectBook) {
-  selectBook[0].shelf = shelf;
+  selectBook.shelf = shelf;
   } else {
   // Add book to shelf
   newBooks.concat(book);
@@ -110,7 +110,7 @@ handleChange = (event) => {
         <div className="search-books-results">
           <ol className="books-grid">
              {
-               this.state.searchResults.map((book) => (<Book book={book} key={book.id} moveBook={this.state.moveBook} />))
+               this.state.searchResults.map((book) => (<Book book={book} key={book.id} moveBook={this.moveBook} />))
              }
           </ol>
         </div>
