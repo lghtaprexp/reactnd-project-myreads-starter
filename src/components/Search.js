@@ -14,81 +14,88 @@ class Search extends React.Component {
   	  }
   	}
 
-  // Get all books in shelves
+  /* Get all books in shelves */
   componentDidMount() {
     BooksAPI.getAll()
     .then((allBooks) => {
-      // console.log(allBooks);
       this.setState({ myBooks: allBooks });
- 	  // console.log(this.state.myBooks);
     });
   }
 
-// Get an updated search result
-queueResult = (query) => {
-  this.setState({ search : query}, this.displayResults);
-  // console.log(this.state.search);
+  /* Get an updated search result */
+  queueResult = (query) => {
+    this.setState({ search : query}, this.displayResults);
+    // console.log(this.state.search);
   }
 
-displayResults = () => {
-  if(this.state.search === '' || this.state.search === undefined) {
-    return this.setState({ searchResults: [] });
-  }
-  BooksAPI.search(this.state.search)
-  .then((result) => {
-    console.log(result);
-    // Returns nothing when search bar is empty
-    if(result.error) {
+  displayResults = () => {
+    /* Check search entry to see if it's left blank or undefined,
+     * then set the search result to an empty array.
+     */
+    if(this.state.search === '' || this.state.search === undefined) {
       return this.setState({ searchResults: [] });
-    } else {
-      // for(let r of result) {
-      //   let newBooks = []
-      //   let bookFound = this.state.myBooks.filter(pickBook => pickBook.id === r.id);
-      //   // console.log(bookFound);
-      //   newBooks.push(bookFound);
-      //   // console.log(newBooks);
-      //   if(bookFound) {
-      //     // console.log(bookFound);
-      //   // r.shelf = bookFound[0].shelf;
-      //   // console.log(r[0].shelf);
-      //   // console.log(bookFound[0].shelf);         
-      //   }
-        this.setState({ searchResults : result});
-      }     
-  });
-  
-}
-
-
-// https://reactjs.org/docs/forms.html
-// Allow user to select the different options to
-// move books between shelves
-handleChange = (event) => {
-  this.queueResult(event.target.value);
-  console.log(event.target.value);
-}
-
-// Moving books between shelves
-  moveBook = (book, shelf) => {
-  // Run update on books and shelves to compare changes
-  BooksAPI.update(book, shelf)
-  .then((newBooks) => {
-  // Create new list of book from running update
-  newBooks = this.state.myBooks;
-  // Check for books on the new list against the one on shelves
-  let selectBook = newBooks.filter(currentBook => currentBook.id === book.id);
-  // console.log(selectBook);
-  if(selectBook) {
-  selectBook.shelf = shelf;
-  } else {
-  // Add book to shelf
-  newBooks.concat(book);
+    }
+    /* Get search result from running BooksAPI
+     */
+    BooksAPI.search(this.state.search)
+    .then((result) => {
+      // console.log(result);
+      /* Set searchResults to an empty array if there's error */
+      if(result.error) {
+        return this.setState({ searchResults: [] });
+      } else {
+        /* Loop through search result to find book and check if
+         * book is on one of the library shelves.
+         */
+        for(let r of result) {
+          let newBooks = this.state.myBooks;
+          /* Find books from searchResults and compare it to
+           * books on shelves.
+           */
+          let bookFound = newBooks.find(pickBook => pickBook.id === r.id);
+          // console.log(bookFound);
+          if(bookFound) {
+            /* Set the selected book from search to a shelf in library */
+            r.shelf = bookFound.shelf;
+        } else {
+            /* Set book option to none if book is not found on shelf */
+            r.shelf = "none";
+        }
+          }
+          this.setState({ searchResults : result}, this.props.moveBook);
+        }
+    });
   }
-  // Update state with new list
-  this.setState({ myBooks: newBooks});
-  });
-}
 
+  /* Allow user to select the different options to
+   * move books between shelves from the search results.
+   */
+  handleChange = (event) => {
+    this.queueResult(event.target.value);
+    // console.log(event.target.value);
+  }
+
+  /* Moving books between shelves */
+  moveBook = (book, shelf) => {
+    /* Run update on books and shelves to compare changes */
+    BooksAPI.update(book, shelf)
+    .then((newBooks) => {
+    /* Create new list of book from running update */
+    newBooks = this.state.myBooks;
+    /* Check for books on the new list against the one on shelves */
+    let selectBook = newBooks.filter(currentBook => currentBook.id === book.id);
+    // console.log(selectBook);
+    if(selectBook) {
+      /* Check if searched books are already a particular shelf */
+      selectBook.shelf = shelf;
+    } else {
+        /* Add book to shelf */
+        newBooks.concat(book);
+      }
+      // Update state with new list
+      this.setState({ myBooks: newBooks});
+    });
+  }
 
   render() {
   	return (
@@ -109,15 +116,15 @@ handleChange = (event) => {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-             {
-               this.state.searchResults.map((book) => (<Book book={book} key={book.id} moveBook={this.moveBook} />))
-             }
+            {/* Mapping through all books from search result and find book to add to shelves*/}
+            {
+              this.state.searchResults.map((book) => (<Book book={book} key={book.id} moveBook={this.moveBook} />))
+            }
           </ol>
         </div>
       </div>
   	  )
   }
-
 }
 
 export default Search

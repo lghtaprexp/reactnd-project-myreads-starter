@@ -3,7 +3,7 @@ import Book from './Book'
 // import Home from './Home'
 
 class Shelf extends React.Component {
-  // Check props that were given
+  /* Check props that were given */
   // componentDidMount() {
   // 	console.log(this);
   // }

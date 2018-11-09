@@ -9,12 +9,12 @@ class Home extends React.Component {
   	this.state = {
   	  myBooks: [],
   	  currentlyReading: [],
- 	  wantToRead: [],
+ 	    wantToRead: [],
   	  read: [],
   	  }
   	}
 
-  // Get all books in shelves
+  /* Get all books in shelves */
   componentDidMount() {
     BooksAPI.getAll()
     .then((allBooks) => {
@@ -24,23 +24,24 @@ class Home extends React.Component {
     });
   }
 
-  // Moving books between shelves
+  /* Moving books between shelves */
   moveBook = (book, shelf) => {
-  	// Run update on books and shelves to compare changes
+  	/* Run update on books and shelves to compare changes */
   	BooksAPI.update(book, shelf)
   	.then((newBooks) => {
-  	// Create new list of book from running update
+  	/* Create new list of book from running update */
   	newBooks = this.state.myBooks;
-  	// Check for books on the new list against the one on shelves
+  	/* Check for books on the new list against the one on shelves */
   	let selectBook = newBooks.filter(currentBook => currentBook.id === book.id);
   	// console.log(selectBook);
   	if(selectBook) {
+      /* Check if searched books are already a particular shelf */
   	  selectBook[0].shelf = shelf;
   	} else {
-  		// Add book to shelf
-        newBooks.concat(book);
+  		/* Add book to shelf */
+      newBooks.concat(book);
   	}
-  	// Update state with new list
+  	/* Update state with new list */
   	this.setState({ myBooks: newBooks});
   	});
   }
@@ -50,7 +51,7 @@ class Home extends React.Component {
   	let currentlyReading = this.state.myBooks.filter(book => book.shelf === "currentlyReading");
     let wantToRead = this.state.myBooks.filter(book => book.shelf === "wantToRead");
     let read = this.state.myBooks.filter(book => book.shelf === "read");
-	/* console.log(currentlyReading, wantToRead, read); */
+	  /* console.log(currentlyReading, wantToRead, read); */
 
   	return (
   	  <div className="list-books">
@@ -59,6 +60,7 @@ class Home extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
+            {/* Create shelves for categories of books */}
             <Shelf shelfName="Currently Reading" myBooks={currentlyReading} moveBook={this.moveBook} />
             <Shelf shelfName="Want to Read" myBooks={wantToRead} moveBook={this.moveBook} />
             <Shelf shelfName="Read" myBooks={read} moveBook={this.moveBook} />

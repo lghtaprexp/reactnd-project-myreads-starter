@@ -91,6 +91,19 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## How to Run App
+* Download or clone project to your local machine
+* Install dependencies using `npm install`
+* Launch local server by typing `npm start`
+* If browser doesn't automatically open, type `http://localhost:3000/` in the address bar to access app
+
+## Project Description
+A book management app built with React. The main page shows three different shelves. One for `Current Reads`, `Want to Read`, and another for `Read` books. Books can be moved to one of the three shelves by clicking the green button on the bottom right of each book. Select none to remove selected book from a shelf. Click the green plus button at the bottom right corner to search for a book to add to a shelf by `Author` or `Title`.
+
 ## Resources
-https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
-https://reactjs.org/docs/forms.html
+1. https://www.npmjs.com/package/react-router
+2. https://reacttraining.com/react-router/web/guides/quick-start
+3. https://youtu.be/MUVMTVd9Gzg
+4. https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
+5. https://youtu.be/acJHkd6K5kI
+6. https://reactjs.org/docs/forms.html
