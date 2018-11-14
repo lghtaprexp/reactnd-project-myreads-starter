@@ -6,26 +6,26 @@ import React from 'react'
 class Book extends React.Component {
   /* Check props that were given */
   // componentDidMount() {
-  // 	console.log(this);
+  //  console.log(this);
   // }
 
   /* Allow user to select the different options to
    * move books between shelves
    */
   handleChange = (event) => {
-  	this.props.moveBook(this.props.book, event.target.value)
-  	// console.log(event.target.value);
+    this.props.moveBook(this.props.book, event.target.value)
+    // console.log(event.target.value);
   }
   
   render() {
-  	/* Remove hard coded title, author, and image thumbnail
-  	*/
-  	let title = this.props.book.title;
-  	let authors = this.props.book.authors;
-  	let imgUrl = this.props.book.imageLinks;
+    /* Remove hard coded title, author, and image thumbnail
+    */
+    let title = this.props.book.title;
+    let authors = this.props.book.authors;
+    let imgUrl = this.props.book.imageLinks;
 
-  	return (
-  	  <li>
+    return (
+      <li>
         <div className="book">
           <div className="book-top">
             {/* If no image found for book, set image to blank.
@@ -49,7 +49,7 @@ class Book extends React.Component {
           <div className="book-authors">{!authors ? "Unknown" : authors[0]}</div>
         </div>
       </li>
-  	  )
+      )
   }
 
 }
