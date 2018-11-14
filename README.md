@@ -8,10 +8,13 @@ A book management app built with React. The app must be able to utilize the Book
 * Books can be search by `Author` or `Title` and can be move to shelves.
 
 ## How to Run App
-* Download or clone project to your local machine using the terminal
+* Download or clone project using `https://github.com/lghtaprexp/reactnd-project-myreads-starter.git` to your local machine using the terminal.
 * In the terminal, install dependencies using `npm install` 
-* Launch local server by typing `npm start`
-* If browser doesn't automatically open, type `http://localhost:3000/` in the address bar to access app
+* Launch local server by typing `npm start`.
+* If browser doesn't automatically open, type `http://localhost:3000/` in the address bar to access app.
+
+## Dependencies
+* Dependencies for this project can be found in the package.json file
 
 ## Resources
 1. https://www.npmjs.com/package/react-router
